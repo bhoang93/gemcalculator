@@ -14,62 +14,123 @@ class App extends Component {
       submitted: false,
       currentGems: '',
       startDate: '0',
-      endDate: '0',
+      endDate: 0,
       advanced: false,
       isVisisble: false,
       showInfo: false,
+      daysLoggedIn: 0,
+      storyModeGems: 0,
+      advancedDates: false,
+      newStory: false,
+      tmGems: false,
+      displayInfoAnimation: false,
     }
   }
 
-setStartDate = (event) => {
-  console.log(event.target.value)
+setStartDate = (event) => { // Function to set the starting date.
   this.setState({startDate: event.target.value})
 } 
-setEndDate = (event) => {
-  console.log(event.target.value)
+setEndDate = (event) => { // Function to set the end date.
   this.setState({endDate: event.target.value})
 } 
-setCurrentGems = (event) => {
+setCurrentGems = (event) => { // Function setting how many gems the user has at the moment.
   this.setState({currentGems: event.target.value})
 } 
-onSubmit = () => {
-  var today = new Date().toJSON().slice(0,10)
+
+setDaysLoggedIn = (event) => { // How many days a user has already logged in so they can properly see their milestone gems.
+  this.setState({daysLoggedIn: event.target.value});
+} 
+
+setStoryGems = (event) => { // How many gems they can still earn from story mode.
+  this.setState({storyModeGems: Number(event.target.value)});
+}
+
+setAdvDates = (event) => { // Display the option to choose own start and ending date.
+  this.state.advancedDates === false ? this.setState({advancedDates:true}) : this.setState({advancedDates:false});
+}
+
+newStoryCheck = (event) => {
+  this.state.newStory ? this.setState({newStory: false}) : this.setState({newStory: true});
+}
+
+tmGemsCheck = (event) => {
+  this.state.tmGems ? this.setState({tmGems: false}) : this.setState({tmGems: true});
+}
+
+onSubmit = () => { // Submit button on default screen
+  let today = new Date().toJSON().slice(0,10);
   const days = Math.floor((Date.parse(this.state.endDate) - Date.parse(today)) / 86400000);
-  if (this.state.endDate != 0) {
-    this.setState({days: days});
-    this.setState({submitted: true});
-    this.setState({isVisisble: true});
+  if (this.state.endDate !== 0) {
+    this.setState({
+    days: days,
+    submitted: true,
+    isVisisble: true
+  });
   }
 }
 
-setAdvanced = () => {
+setAdvanced = () => { // Go to advanced options toggle.
   this.state.advanced === false ? this.setState({advanced:true}) : this.setState({advanced:false});
 }
 
-onSubmitAdvanced = () => {
-  const days = Math.floor((Date.parse(this.state.endDate) - Date.parse(this.state.startDate)) / 86400000);
-  if (this.state.startDate != 0 && this.state.endDate != 0) {
-    this.setState({days: days});
-    this.setState({submitted: true});
-    this.setState({isVisisble: true});
+onSubmitAdvanced = () => { // Submit button on the advanced screen.
+  let today = new Date().toJSON().slice(0,10);
+  let days = 0;
+
+{
+  !this.state.advancedDates ?    
+  days = Math.floor((Date.parse(this.state.endDate) - Date.parse(today)) / 86400000) 
+  : days = Math.floor((Date.parse(this.state.endDate) - Date.parse(this.state.startDate)) / 86400000)
+}
+
+  if (this.state.startDate !== 0 && this.state.endDate !== 0) {
+    this.setState({
+      days: days,
+      submitted: true, 
+      isVisisble: true});
   }
 }
 
-goBack = () => {
-  this.setState({submitted: false});
-  this.setState({currentGems: 0});
-  this.setState({endDate: 0});
+goBack = () => { // Return to start screen after pressing submit.
+  this.setState({
+  submitted: false,
+  currentGems: 0,
+  endDate: 0, 
+  storyModeGems: 0,
+  advancedDates: false,
+  newStory: false,
+  tmGems: false
+ });
 }
 
-displayInfo = () => {
-  this.state.showInfo ? this.setState({showInfo: false}) : this.setState({showInfo: true});
+allProjections = () => { 
+  const allCheck = document.getElementById("allCheck");
+  const checkbox1 = document.getElementById("proj1");
+  const checkbox2 = document.getElementById("proj2");
+
+  allCheck.checked === true ? checkbox1.checked = true : checkbox1.checked = false; 
+  allCheck.checked === true ? checkbox2.checked = true : checkbox2.checked = false; 
+
+  this.state.newStory === false ?  
+  this.setState({
+      newStory: true,
+      tmGems: true,
+  }) :
+  this.setState({
+      newStory: false,
+      tmGems: false,
+})}
+
+displayInfo = () => { // Shows tooltip regarding calculations.
+  this.setState({showInfo: true})
+  this.state.displayInfoAnimation ? this.setState({displayInfoAnimation: false}) : this.setState({displayInfoAnimation: true});
 }
   render() {
     return (
       <div className="App">
       <button onClick={this.displayInfo} className='infoBox'>?</button>
-      <h1>Rainbow Gem Calculator</h1>
-      <Animated animationIn="lightSpeedIn">
+      <h1>RAINBOW GEM CALCULATOR</h1>
+      <Animated animationIn="lightSpeedIn" animationOut="fadeOut" isVisible={this.state.mainAnimation}>
         {this.state.submitted === false ?
           <div>
             <button onClick={this.setAdvanced}>Advanced Options</button>
@@ -79,11 +140,30 @@ displayInfo = () => {
             setEndDate={this.setEndDate} 
             onSubmit={this.onSubmit}
             advanced={this.state.advanced} 
-            onSubmitAdvanced={this.onSubmitAdvanced}/>
+            onSubmitAdvanced={this.onSubmitAdvanced}
+            setDaysLoggedIn={this.setDaysLoggedIn}
+            setStoryGems={this.setStoryGems}
+            advancedDates={this.state.advancedDates}
+            setAdvDates={this.setAdvDates}
+            newStoryCheck={this.newStoryCheck}
+            tmGemsCheck={this.tmGemsCheck}
+            allProjections={this.allProjections}
+            />
             </div> :
-          <Calculator goBack={this.goBack} days={this.state.days} currentGems={this.state.currentGems} isVisisble={this.state.isVisisble}/>
+          <Calculator 
+          goBack={this.goBack} 
+          days={this.state.days} 
+          currentGems={this.state.currentGems} 
+          isVisisble={this.state.isVisisble} 
+          daysLoggedIn={this.state.daysLoggedIn}
+          storyModeGems={this.state.storyModeGems}
+          newStory={this.state.newStory}
+          tmGems={this.state.tmGems}
+          />
         }
-        <Info showInfo={this.state.showInfo}/>
+        <Info 
+        showInfo={this.state.showInfo}
+        displayInfoAnimation={this.state.displayInfoAnimation}/>
             </Animated>
       </div>
     );

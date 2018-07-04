@@ -1,3 +1,20 @@
 .gemBox {
 	width: 75px;
 }
+
+.choices {
+	padding-bottom: 20px;
+	line-height: 130%;
+	margin: auto;
+}
+
+.option {
+	background-color: grey;
+}
+
+.projections {
+  	background: linear-gradient(89deg, #5B86E5 0%, #36D1DC 100%);
+	width: 30%;
+	margin: auto;
+	padding-bottom: 15px;
+}
