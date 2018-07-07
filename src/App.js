@@ -49,11 +49,11 @@ setAdvDates = (event) => { // Display the option to choose own start and ending 
   this.state.advancedDates === false ? this.setState({advancedDates:true}) : this.setState({advancedDates:false});
 }
 
-newStoryCheck = (event) => {
+newStoryCheck = (event) => { // If user wants to add new story mode islands into the projection.
   this.state.newStory ? this.setState({newStory: false}) : this.setState({newStory: true});
 }
 
-tmGemsCheck = (event) => {
+tmGemsCheck = (event) => { // If user wants to add new TM islands into the projection.
   this.state.tmGems ? this.setState({tmGems: false}) : this.setState({tmGems: true});
 }
 
@@ -77,7 +77,7 @@ onSubmitAdvanced = () => { // Submit button on the advanced screen.
   let today = new Date().toJSON().slice(0,10);
   let days = 0;
 
-{
+{ // Check if user wants to add their own dates.
   !this.state.advancedDates ?    
   days = Math.floor((Date.parse(this.state.endDate) - Date.parse(today)) / 86400000) 
   : days = Math.floor((Date.parse(this.state.endDate) - Date.parse(this.state.startDate)) / 86400000)
@@ -103,7 +103,7 @@ goBack = () => { // Return to start screen after pressing submit.
  });
 }
 
-allProjections = () => { 
+allProjections = () => {  // Checks all boxes and adds in all possible projections.
   const allCheck = document.getElementById("allCheck");
   const checkbox1 = document.getElementById("proj1");
   const checkbox2 = document.getElementById("proj2");

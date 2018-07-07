@@ -2,86 +2,99 @@ import React from 'react'
 import './Calculator.css'
 import {Animated} from 'react-animated-css';
 
+
 const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyModeGems, newStory, tmGems }) => {
 
 	const fortnight = (days) => {
-		return (Math.floor(days / 14)) * 4;
+		return (Math.floor(days / 14)) * 4; // 4 gems per 2 weeks for fortnights.
 	}
 
 	const milestone = (days, loggedIn) => {
-		let milestoneGems = 0;
-		let extraDays = 0;
-		let milestoneDays = days;
+		let milestoneGems = 0; // Variable containing how many gems you get from milestone log ins.
+		let extraDays = Number(loggedIn); // How many days the user has already logged in.
+		let milestoneDays = Number(days); // How many days we are calculating between the two dates
 
-		loggedIn > 100 ? extraDays = Number(loggedIn.toString().substring(1)) :
-			extraDays = loggedIn;
+			if (extraDays < 60) {
 
-			if (extraDays > 50) { 
-				milestoneGems += 10;
-				milestoneDays -= (100 - extraDays);
-			} else if (extraDays + days > 50) {
-				milestoneGems += 5;
-				milestoneDays -= (50 - extraDays);
-			}
-			
-		// else {
-		// 		const daysTotal = milestoneDays + loggedIn
-
-		// 		switch (true) {
-		// 			case (daysTotal >= 60 && daysTotal < 100):
-		// 				milestoneGems += 21;
-		// 				milestoneDays -= 60;
-		// 				console.log("case1");
-		// 				break;
-		// 			case (daysTotal >= 30):
-		// 				milestoneGems += 16;
-		// 				milestoneDays -= 30;
-		// 				console.log("case2");
-		// 				break;
-		// 			case (daysTotal >= 15):
-		// 				milestoneGems += 11;
-		// 				milestoneDays -= 15;
-		// 				console.log("case3");
-		// 				break;
-		// 			case (daysTotal >= 10):
-		// 				milestoneGems += 8;
-		// 				milestoneDays -= 10;
-		// 				console.log("case4");
-		// 				break;
-		// 			case (daysTotal >= 5):
-		// 				milestoneGems += 3;
-		// 				milestoneDays -= 5;
-		// 				console.log("case5");
-		// 				break;
-		// 		}
-		// 	}	
-
-		let roundedDays = Math.floor((milestoneDays) / 50);
-
-		if (milestoneGems % 10 === 0) {
-			for (let j = roundedDays; j > 0; j--) {
-				j % 2 === 0 ? milestoneGems += 10 : milestoneGems += 5;
-			}
-		} else {
-			for (let j = roundedDays; j > 0; j--) {
-				j % 2 === 0 ? milestoneGems += 5 : milestoneGems += 10;
-			}			
+				const pre60milestones = (gem10, gem15, gem20, gem30, gem60) => { // Takes how many gems a player will reach on each milestone.
+				if (extraDays + milestoneDays >= 60) { 
+						milestoneGems += gem60; // How many gems will the receive? This depends on where they start from e.g. more gems if they start from day 10 then from day 30.
+						extraDays -= 60; // If the player will reach 60 days, -60 days from the future calculation 
+						console.log("60 day level 1")
+					} else if (extraDays + milestoneDays >= 30) {
+						milestoneGems += gem30;
+						extraDays -= 30;
+						console.log("60 day level 2")
+					} else if (extraDays + milestoneDays >= 20) {
+						milestoneGems += gem20;
+						extraDays -= 20;
+						console.log("60 day level 3")
+					} else if (extraDays + milestoneDays >= 15) {
+						milestoneGems += gem15;
+						extraDays -= 15;
+						console.log("60 day level 4")
+					} else if (extraDays + milestoneDays >= 10) {
+						milestoneGems += gem10;
+						extraDays -= 10;
+						console.log("60 day level 5")
+					}
+				}
+					if (extraDays >= 30) { // If the user has logged in more than 30 days, they can get the bonuses for day 60 but not 20, 15 or 10.
+						pre60milestones(0, 0, 0, 0, 5);
+						console.log("level1")
+					} else if (extraDays >= 20) {
+						pre60milestones(0, 0, 0, 5, 10);
+						console.log("level2")
+					} else if (extraDays >= 15) {
+						pre60milestones(0, 0, 3, 8, 13);
+						console.log("level3")
+					} else if (extraDays >= 10) {
+						pre60milestones(0, 3, 6, 11, 16);
+						console.log("level4")
+					} else if (extraDays >= 0) {
+						pre60milestones(5, 8, 11, 16, 21);
+						console.log("level5")
+					}
 		}
-		return milestoneGems
+
+			while (extraDays.toString().length > 2) { // This while loop will remove the first digit until there are only 2 left.
+				extraDays = Number(extraDays.toString().substring(1))
+			}
+
+				if (extraDays > 50) { // This will determine how close they are to the next 50/100 day milestone.
+					milestoneGems += 10;
+					milestoneDays -= (100 - extraDays);
+				} else if (extraDays + milestoneDays > 50) {
+					milestoneGems += 5;
+					milestoneDays -= (50 - extraDays);
+				}
+
+			let roundedDays = Math.floor((milestoneDays) / 50); // How many multiples of 50 do their remaining days have to determine the rest of the milestone gems.
+
+			if (milestoneGems % 10 === 0) { // If statement to determine if the next milestone will give them 5 or 10 gems, then continue from there.
+				for (let j = roundedDays; j > 0; j--) {
+					j % 2 === 0 ? milestoneGems += 10 : milestoneGems += 5;
+				}
+			} else {
+				for (let j = roundedDays; j > 0; j--) {
+					j % 2 === 0 ? milestoneGems += 5 : milestoneGems += 10;
+				}			
+			}
+			return milestoneGems
 	}
 
 	const chopperman = (days) => {
-		return (Math.floor(days / 7)) * 2;
+		return (Math.floor(days / 7)) * 2; // 2 Gems per week for finishing Chopperman missions.
 	}
 
 	const colosseum = (days) => {
-		return (Math.floor(days / 14)) * 3;
+		return (Math.floor(days / 14)) * 3; // 3 gems every 2 weeks for new Colosseum rotations.
 	}
 
 	const newStoryGems = (days) => {
 		let gems = 0;
 		if (newStoryGems) {
-			gems = (Math.floor(days / 112)) * 9
+			gems = (Math.floor(days / 112)) * 9 // 9 gems every 4 months for new story islands.
 		}
 		return gems;
 	}
@@ -89,12 +102,12 @@ const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyM
 	const tmGemsCalc = (days) => {
 		let gems = 0;
 		if (tmGems) {
-			gems = (Math.floor(days / 28)) * 5
+			gems = (Math.floor(days / 28)) * 5 // 5 Gems every month for new TMs.
 		}
 		return gems;
 	}
 
-	const total = (days) => {
+	const total = (days) => { // Find total gems.
 		return days + fortnight(days) + milestone(days, daysLoggedIn) + chopperman(days) + colosseum(days) + storyModeGems + Number(currentGems) + tmGemsCalc(days) + newStoryGems(days);
 	}
 
