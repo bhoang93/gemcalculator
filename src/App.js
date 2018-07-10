@@ -6,10 +6,7 @@ import Info from './Info'
 import {Animated} from 'react-animated-css';
 import Tachyons from 'tachyons'
 
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {
+const initialState = {
       days: 0,
       submitted: false,
       currentGems: '',
@@ -24,7 +21,14 @@ class App extends Component {
       newStory: false,
       tmGems: false,
       displayInfoAnimation: false,
+      allChecked: false,
+      hideBoxes: false,
     }
+
+class App extends Component {
+  constructor() {
+    super()
+    this.state = initialState
   }
 
 setStartDate = (event) => { // Function to set the starting date.
@@ -92,26 +96,15 @@ onSubmitAdvanced = () => { // Submit button on the advanced screen.
 }
 
 goBack = () => { // Return to start screen after pressing submit.
-  this.setState({
-  submitted: false,
-  currentGems: 0,
-  endDate: 0, 
-  storyModeGems: 0,
-  advancedDates: false,
-  newStory: false,
-  tmGems: false
- });
+  this.setState(initialState);
 }
 
 allProjections = () => {  // Checks all boxes and adds in all possible projections.
-  const allCheck = document.getElementById("allCheck");
-  const checkbox1 = document.getElementById("proj1");
-  const checkbox2 = document.getElementById("proj2");
 
-  allCheck.checked === true ? checkbox1.checked = true : checkbox1.checked = false; 
-  allCheck.checked === true ? checkbox2.checked = true : checkbox2.checked = false; 
+    this.state.allChecked ? this.setState({allChecked: true}) : this.setState({allChecked: false})
+  this.state.hideBoxes ? this.setState({hideBoxes: false}) : this.setState({hideBoxes: true})
 
-  this.state.newStory === false ?  
+  this.state.allChecked ?  
   this.setState({
       newStory: true,
       tmGems: true,
@@ -148,6 +141,8 @@ displayInfo = () => { // Shows tooltip regarding calculations.
             newStoryCheck={this.newStoryCheck}
             tmGemsCheck={this.tmGemsCheck}
             allProjections={this.allProjections}
+            allChecked={this.state.allChecked}
+            hideBoxes={this.state.hideBoxes}
             />
             </div> :
           <Calculator 

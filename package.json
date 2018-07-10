@@ -1,15 +1,15 @@
 {
   "homepage": "http://bhoang93.github.io/gemcalculator",
   "name": "gemcalculator",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "dependencies": {
     "animate.css": "^3.6.1",
-    "gh-pages": "^1.2.0",
     "react": "^16.4.1",
     "react-animated-css": "^1.0.4",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
+    "react-toggle": "^4.0.2",
     "tachyons": "^4.10.0"
   },
   "scripts": {
@@ -20,5 +20,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "uglifyjs-webpack-plugin": "^1.2.7"
+  }
 }

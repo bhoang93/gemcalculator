@@ -3,11 +3,13 @@ import './submitForm.css'
 import {Animated} from 'react-animated-css';
 import Toggle from 'react-toggle';
 
-const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEndDate, onSubmit, advanced, onSubmitAdvanced, setDaysLoggedIn, setStoryGems, setAdvDates, advancedDates, newStoryCheck, tmGemsCheck, allProjections }) =>
+class SubmitForm extends React.Component { 
+	constructor(props) {
+			super(props);
+			this.state = {checkAll: false, checkbox1: false, checkbox2: false}
+		}
 
-{
-
-	const importantDates = (setEndDate) => {
+	importantDates = (setEndDate) => {
 	return (
 				<div>
 				<h2>Important Dates:</h2> 
@@ -21,13 +23,25 @@ const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEn
 				</div>
 	)
 	}
+
+	checkAllBoxes = () => {
+		this.state.checkbox1 ? this.setState({checkbox1: false}) : this.setState({checkbox1: true})
+		this.state.checkbox2 ? this.setState({checkbox2: false}) : this.setState({checkbox2: true})
+	}
+
+	checkBox = () => {
+		this.state.checkbox1 ? this.setState({checkbox1: false}) : this.setState({checkbox1: true})
+	}
+
+render() {
+	const { allChecked, setStartDate, setCurrentGems, setEndDate, onSubmit, advanced, onSubmitAdvanced, setDaysLoggedIn, setStoryGems, setAdvDates, advancedDates, newStoryCheck, tmGemsCheck, allProjections } = this.props;
 		return(
 			<div>
 			<span><p>Current number of gems:</p> <input className="gemBox" type='number' min="0" onChange={setCurrentGems}></input></span>
 			<span><p>Total days logged in:</p> <input className="gemBox" type='number' min="0" onChange={setDaysLoggedIn}></input></span>
 			{ advanced === false ?
 				<div>
-				{importantDates(setEndDate)}
+				{this.importantDates(setEndDate)}
 				<button onClick={onSubmit}>Calculate</button>
 				</div> :
 				      <Animated animationIn="bounceIn">
@@ -73,24 +87,19 @@ const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEn
 				</select></section>
 	<div className="projections br3 ba b--black-10 mv4 w-50-m w-25-l shadow-5 center">
 		<h3>Include Projections For:</h3>
-		<p>Everything<Toggle id="allCheck" onChange={allProjections} /> </p>
-		{
-			!hideBoxes ?
-			<div>Future Story Islands <input type="checkbox" onChange={newStoryCheck}></input>
-			Treasure Map Mode <input type="checkbox" onChange={tmGemsCheck}></input> </div>
-			: <div></div>
-		}
+		<p>Everything <Toggle id="allCheck" onChange={allProjections, this.checkAllBoxes} /> </p>
+		<span>Future Story Islands <Toggle checked={this.state.checkbox1} onChange={newStoryCheck, this.checkBox} />
+		Treasure Map Mode <Toggle checked={this.state.checkbox2}  onChange={tmGemsCheck} /> </span>
 	</div>
 
 <div>
-  <p>Choose Own Dates</p>
-   <Toggle onChange={setAdvDates} />
+  <p>Choose Own Dates <input type="checkbox" onChange={setAdvDates}></input></p>
 </div>
 
 	{
 		advancedDates === false ?				
 			<div>
-				{importantDates(setEndDate)}
+				{this.importantDates(setEndDate)}
 			</div>
 				:
 				<div>
@@ -105,6 +114,7 @@ const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEn
 			}
 			</div>
 		)
+	}
 }
 
 export default SubmitForm;
