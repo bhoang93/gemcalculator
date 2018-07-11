@@ -154,9 +154,6 @@ displayInfo = () => { // Shows tooltip regarding calculations.
           tmGems={this.state.tmGems}
           />
         }
-        <Info 
-        showInfo={this.state.showInfo}
-        displayInfoAnimation={this.state.displayInfoAnimation}/>
             </Animated>
       </div>
     );
