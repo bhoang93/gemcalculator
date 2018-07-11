@@ -3,17 +3,11 @@ import {Animated} from 'react-animated-css';
 
 const Info = ({showInfo, displayInfoAnimation}) => {
 
-			const infoText = {
-				padding: "20px",
-				lineHeight: "120%",
-				fontSize: "1em",
-			}
-
 	return(
 		<div>
 		<Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={displayInfoAnimation}>
 		{showInfo === true ?
-			<article  id="infoBox" style={infoText}>
+			<article  id="infoBox">
 			<p>The calculator assumes that:</p>
 				<ul>
 					<li>You log in every day to obtain your 1 gem from the mail.</li>

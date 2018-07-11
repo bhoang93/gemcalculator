@@ -183,4 +183,23 @@ button:hover {
     body {
       font-size: 0.7em;
     }
+    h1 {
+      font-size: 1.5em;
+    }
+    button {
+      font-size: 0.7em;
+    }
+    h3 {
+      font-size: 1em;
+    }
+    .react-toggle {
+      transform: scale(0.6);
+      position: relative;
+      margin: -5px;
+
+    }
+    input {
+      position: relative;
+      top: 3px;
+    }
 }
