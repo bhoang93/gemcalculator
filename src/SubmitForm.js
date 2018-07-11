@@ -13,6 +13,7 @@ const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEn
 				<h2>Important Dates:</h2> 
 				<div className='choices'>
 					<select onClick={setEndDate}>
+						<option value='0'>---</option>
 						<option value='2018-07-20'>French 3rd Anniversary</option>
 						<option value='2018-12-25'>Christmas 2018</option>
 						<option value='2019-01-01'>New Year's Day 2019</option>
@@ -75,7 +76,7 @@ const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEn
 				</select></section>
 	<div className="projections">
 		<h3>Include Projections For:</h3>
-		<p className="everything">Everything&nbsp;<Toggle id="allCheck" onChange={allProjections} /></p>
+		<span className="everything">Everything&nbsp;<Toggle id="allCheck" onChange={allProjections} /></span>
 		{
 			!hideBoxes ?
 			<div><div>Future Story Islands <input type="checkbox" onChange={newStoryCheck}></input></div>

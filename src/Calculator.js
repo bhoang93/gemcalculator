@@ -20,40 +20,30 @@ const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyM
 				if (extraDays + milestoneDays >= 60) { 
 						milestoneGems += gem60; // How many gems will the receive? This depends on where they start from e.g. more gems if they start from day 10 then from day 30.
 						extraDays -= 60; // If the player will reach 60 days, -60 days from the future calculation 
-						console.log("60 day level 1")
 					} else if (extraDays + milestoneDays >= 30) {
 						milestoneGems += gem30;
 						extraDays -= 30;
-						console.log("60 day level 2")
 					} else if (extraDays + milestoneDays >= 20) {
 						milestoneGems += gem20;
 						extraDays -= 20;
-						console.log("60 day level 3")
 					} else if (extraDays + milestoneDays >= 15) {
 						milestoneGems += gem15;
 						extraDays -= 15;
-						console.log("60 day level 4")
 					} else if (extraDays + milestoneDays >= 10) {
 						milestoneGems += gem10;
 						extraDays -= 10;
-						console.log("60 day level 5")
 					}
 				}
 					if (extraDays >= 30) { // If the user has logged in more than 30 days, they can get the bonuses for day 60 but not 20, 15 or 10.
 						pre60milestones(0, 0, 0, 0, 5);
-						console.log("level1")
 					} else if (extraDays >= 20) {
 						pre60milestones(0, 0, 0, 5, 10);
-						console.log("level2")
 					} else if (extraDays >= 15) {
 						pre60milestones(0, 0, 3, 8, 13);
-						console.log("level3")
 					} else if (extraDays >= 10) {
 						pre60milestones(0, 3, 6, 11, 16);
-						console.log("level4")
 					} else if (extraDays >= 0) {
 						pre60milestones(5, 8, 11, 16, 21);
-						console.log("level5")
 					}
 		}
 

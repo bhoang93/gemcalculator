@@ -10,7 +10,7 @@ const initialState = {
       submitted: false,
       currentGems: '',
       startDate: '0',
-      endDate: 0,
+      endDate: "0",
       advanced: false,
       isVisisble: false,
       showInfo: false,
@@ -20,7 +20,7 @@ const initialState = {
       newStory: false,
       tmGems: false,
       displayInfoAnimation: false,
-      allChecked: false,
+      allChecked: true,
       hideBoxes: false,
     }
 
@@ -70,7 +70,7 @@ onSubmit = () => { // Submit button on default screen
   : days = Math.floor((Date.parse(this.state.endDate) - Date.parse(this.state.startDate)) / 86400000)
 
 
-  if (this.state.startDate !== 0 && this.state.endDate !== 0) {
+  if (this.state.startDate !== 0 && this.state.endDate !== "0") {
     this.setState({
       days: days,
       submitted: true, 
@@ -88,8 +88,8 @@ goBack = () => { // Return to start screen after pressing submit.
 
 allProjections = () => {  // Checks all boxes and adds in all possible projections.
 
-    this.state.allChecked ? this.setState({allChecked: true}) : this.setState({allChecked: false})
-  this.state.hideBoxes ? this.setState({hideBoxes: false}) : this.setState({hideBoxes: true})
+  !this.state.allChecked ? this.setState({allChecked: true, hideBoxes: false}) : this.setState({allChecked: false, hideBoxes: true})
+  console.log(this.state.allChecked);
 
   this.state.allChecked ?  
   this.setState({
@@ -99,7 +99,8 @@ allProjections = () => {  // Checks all boxes and adds in all possible projectio
   this.setState({
       newStory: false,
       tmGems: false,
-})}
+})
+}
 
 displayInfo = () => { // Shows tooltip regarding calculations.
   this.setState({showInfo: true})
