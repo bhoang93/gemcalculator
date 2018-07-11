@@ -73,11 +73,11 @@ const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEn
 				</select></section>
 	<div className="projections br3 ba b--black-10 mv4 w-50-m w-25-l shadow-5 center">
 		<h3>Include Projections For:</h3>
-		<p>Everything<Toggle id="allCheck" onChange={allProjections} /> </p>
+		<p className="everything">Everything&nbsp;<Toggle id="allCheck" onChange={allProjections} /></p>
 		{
 			!hideBoxes ?
-			<div>Future Story Islands <input type="checkbox" onChange={newStoryCheck}></input>
-			Treasure Map Mode <input type="checkbox" onChange={tmGemsCheck}></input> </div>
+			<div><div>Future Story Islands <input type="checkbox" onChange={newStoryCheck}></input></div>
+			<div>Treasure Map Mode <input type="checkbox" onChange={tmGemsCheck}></input></div></div>
 			: <div></div>
 		}
 	</div>

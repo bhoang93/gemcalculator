@@ -18,3 +18,8 @@
 	margin: auto;
 	padding-bottom: 15px;
 }
+
+.everything {
+	display: flex;
+	justify-content: center;
+}

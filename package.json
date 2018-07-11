@@ -21,6 +21,8 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "compression-webpack-plugin": "^1.1.11",
+    "minimatch": "^3.0.4",
     "uglifyjs-webpack-plugin": "^1.2.7"
   }
 }
