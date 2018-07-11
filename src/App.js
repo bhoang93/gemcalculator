@@ -62,29 +62,13 @@ tmGemsCheck = (event) => { // If user wants to add new TM islands into the proje
 
 onSubmit = () => { // Submit button on default screen
   let today = new Date().toJSON().slice(0,10);
-  const days = Math.floor((Date.parse(this.state.endDate) - Date.parse(today)) / 86400000);
-  if (this.state.endDate !== 0) {
-    this.setState({
-    days: days,
-    submitted: true,
-    isVisisble: true
-  });
-  }
-}
-
-setAdvanced = () => { // Go to advanced options toggle.
-  this.state.advanced === false ? this.setState({advanced:true}) : this.setState({advanced:false});
-}
-
-onSubmitAdvanced = () => { // Submit button on the advanced screen.
-  let today = new Date().toJSON().slice(0,10);
   let days = 0;
 
-{ // Check if user wants to add their own dates.
+ // Check if user wants to add their own dates.
   !this.state.advancedDates ?    
   days = Math.floor((Date.parse(this.state.endDate) - Date.parse(today)) / 86400000) 
   : days = Math.floor((Date.parse(this.state.endDate) - Date.parse(this.state.startDate)) / 86400000)
-}
+
 
   if (this.state.startDate !== 0 && this.state.endDate !== 0) {
     this.setState({
@@ -92,6 +76,10 @@ onSubmitAdvanced = () => { // Submit button on the advanced screen.
       submitted: true, 
       isVisisble: true});
   }
+}
+
+setAdvanced = () => { // Go to advanced options toggle.
+  this.state.advanced === false ? this.setState({advanced:true}) : this.setState({advanced:false});
 }
 
 goBack = () => { // Return to start screen after pressing submit.
@@ -131,7 +119,6 @@ displayInfo = () => { // Shows tooltip regarding calculations.
             setEndDate={this.setEndDate} 
             onSubmit={this.onSubmit}
             advanced={this.state.advanced} 
-            onSubmitAdvanced={this.onSubmitAdvanced}
             setDaysLoggedIn={this.setDaysLoggedIn}
             setStoryGems={this.setStoryGems}
             advancedDates={this.state.advancedDates}

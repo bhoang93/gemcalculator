@@ -3,7 +3,7 @@ import './submitForm.css'
 import {Animated} from 'react-animated-css';
 import Toggle from 'react-toggle';
 
-const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEndDate, onSubmit, advanced, onSubmitAdvanced, setDaysLoggedIn, setStoryGems, setAdvDates, advancedDates, newStoryCheck, tmGemsCheck, allProjections }) =>
+const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEndDate, onSubmit, advanced, setDaysLoggedIn, setStoryGems, setAdvDates, advancedDates, newStoryCheck, tmGemsCheck, allProjections }) =>
 
 {
 
@@ -12,11 +12,13 @@ const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEn
 				<div>
 				<h2>Important Dates:</h2> 
 				<div className='choices'>
-					<input type="radio" name="date" value='2018-07-20' onClick={setEndDate} />French 3rd Anniversary<br/>
-					<input type="radio" name="date" value='2018-12-25' onClick={setEndDate} />Christmas 2018<br/>
-					<input type="radio" name="date" value='2019-01-01' onClick={setEndDate} />New Year's Day 2019<br/>
-					<input type="radio" name="date" value='2019-02-23' onClick={setEndDate} />Global 4th Anniversary<br/>
-					<input type="radio" name="date" value='2019-05-10' onClick={setEndDate} />Japan 5th Anniversary<br/>
+					<select onClick={setEndDate}>
+						<option value='2018-07-20'>French 3rd Anniversary</option>
+						<option value='2018-12-25'>Christmas 2018</option>
+						<option value='2019-01-01'>New Year's Day 2019</option>
+						<option value='2019-02-23'>Global 4th Anniversary</option>
+						<option value='2019-05-10'>Japan 5th Anniversary</option>
+					</select>
 				</div>
 				</div>
 	)
@@ -99,7 +101,7 @@ const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEn
 				</div>
 	}
 
-				<button onClick={onSubmitAdvanced}>Calculate</button>
+				<button onClick={onSubmit}>Calculate</button>
 				</div>
 				</Animated>
 			}
