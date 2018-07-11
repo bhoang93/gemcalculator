@@ -71,7 +71,7 @@ const SubmitForm = ({ hideBoxes, allChecked, setStartDate, setCurrentGems, setEn
 					<option value="325">Alvida’s Hideout</option>
 					<option value="334">Fushia Village</option>
 				</select></section>
-	<div className="projections br3 ba b--black-10 mv4 w-50-m w-25-l shadow-5 center">
+	<div className="projections">
 		<h3>Include Projections For:</h3>
 		<p className="everything">Everything&nbsp;<Toggle id="allCheck" onChange={allProjections} /></p>
 		{

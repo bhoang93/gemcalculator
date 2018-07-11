@@ -4,7 +4,6 @@ import Calculator from './Calculator';
 import SubmitForm from './SubmitForm';
 import Info from './Info'
 import {Animated} from 'react-animated-css';
-import Tachyons from 'tachyons'
 
 const initialState = {
       days: 0,
@@ -121,11 +120,10 @@ displayInfo = () => { // Shows tooltip regarding calculations.
   render() {
     return (
       <div className="App">
-      <button onClick={this.displayInfo} className='infoBox'>?</button>
       <h1>RAINBOW GEM CALCULATOR</h1>
       <Animated animationIn="lightSpeedIn" animationOut="fadeOut" isVisible={this.state.mainAnimation}>
         {this.state.submitted === false ?
-          <div>
+          <div id="AdvancedFeatures">
             <button onClick={this.setAdvanced}>Advanced Options</button>
             <SubmitForm 
             setStartDate={this.setStartDate} 
