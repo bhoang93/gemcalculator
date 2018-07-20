@@ -1,7 +1,7 @@
 {
   "homepage": "http://bhoang93.github.io/gemcalculator",
   "name": "gemcalculator",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "dependencies": {
     "animate.css": "^3.6.1",
@@ -9,11 +9,12 @@
     "react-animated-css": "^1.0.4",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
-    "react-toggle": "^4.0.2"
+    "react-toggle": "^4.0.2",
+    "sw-precache": "^5.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp manifest.json build/ && sw-precache --root='build/' --static-file-globs='build/**/!(*map*)'",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "compression-webpack-plugin": "^1.1.11",
     "minimatch": "^3.0.4",
-    "uglifyjs-webpack-plugin": "^1.2.7"
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack-bundle-analyzer": "^2.13.1"
   }
 }

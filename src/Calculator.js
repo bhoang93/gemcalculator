@@ -3,7 +3,7 @@ import './Calculator.css'
 import {Animated} from 'react-animated-css';
 
 
-const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyModeGems, newStory, tmGems }) => {
+const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyModeGems, newStory, tmGems, isGlobal }) => {
 
 	const fortnight = (days) => {
 		return (Math.floor(days / 14)) * 4; // 4 gems per 2 weeks for fortnights.
@@ -73,8 +73,12 @@ const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyM
 			return milestoneGems
 	}
 
-	const chopperman = (days) => {
-		return (Math.floor(days / 7)) * 2; // 2 Gems per week for finishing Chopperman missions.
+	const chopperman = (days, isGlobal) => {
+
+		let weeklyGems = 2;
+		if (!isGlobal) {weeklyGems = 7}
+
+		return (Math.floor(days / 7)) * weeklyGems; // 2 Gems per week for finishing Chopperman missions.
 	}
 
 	const colosseum = (days) => {
@@ -97,8 +101,8 @@ const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyM
 		return gems;
 	}
 
-	const total = (days) => { // Find total gems.
-		return days + fortnight(days) + milestone(days, daysLoggedIn) + chopperman(days) + colosseum(days) + storyModeGems + Number(currentGems) + tmGemsCalc(days) + newStoryGems(days);
+	const total = (days, isGlobal, daysLoggedIn) => { // Find total gems.
+		return days + fortnight(days) + milestone(days, daysLoggedIn) + chopperman(days, isGlobal) + colosseum(days) + storyModeGems + Number(currentGems) + tmGemsCalc(days) + newStoryGems(days);
 	}
 
 	return(
@@ -112,7 +116,7 @@ const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyM
 		}
 		<p>{`${fortnight(days)} gems from fortnights.`}</p>
 		<p>{`${milestone(days, daysLoggedIn)} gems from log-in milestones.`}</p>
-		<p>{`${chopperman(days)} gems from weekly Chopperman missions.`}</p>
+		<p>{`${chopperman(days, isGlobal)} gems from weekly Chopperman missions.`}</p>
 		<p>{`${colosseum(days)} gems from new Colosseum rotations.`}</p>
 		{
 			newStory === true ?
@@ -126,7 +130,7 @@ const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyM
 		}
 			<div className="chopper">
 				<img className="chopperimg" src='https://i.imgur.com/SdfzPA4.png' alt='Chopper Says'/>
-				<p className='speech-bubble'>{`You will have at least ${total(days)} gems in ${days} day(s).`}</p>
+				<p className='speech-bubble'>{`You will have at least ${total(days, isGlobal, daysLoggedIn)} gems in ${days} day(s).`}</p>
 			</div>
 		<button onClick={goBack}>Go Back</button>
 	</Animated>

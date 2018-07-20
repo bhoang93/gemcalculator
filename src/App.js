@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Calculator from './Calculator';
 import SubmitForm from './SubmitForm';
-import Info from './Info'
 import {Animated} from 'react-animated-css';
+import Toggle from 'react-toggle';
 
 const initialState = {
       days: 0,
@@ -22,6 +21,9 @@ const initialState = {
       displayInfoAnimation: false,
       allChecked: true,
       hideBoxes: false,
+      isGlobal: true,
+      calculator: null,
+      key: 0,
     }
 
 class App extends Component {
@@ -46,6 +48,7 @@ setDaysLoggedIn = (event) => { // How many days a user has already logged in so 
 
 setStoryGems = (event) => { // How many gems they can still earn from story mode.
   this.setState({storyModeGems: Number(event.target.value)});
+  console.log(this.state.isGlobal, this.state.storyModeGems)
 }
 
 setAdvDates = (event) => { // Display the option to choose own start and ending date.
@@ -61,6 +64,9 @@ tmGemsCheck = (event) => { // If user wants to add new TM islands into the proje
 }
 
 onSubmit = () => { // Submit button on default screen
+
+  import('./Calculator').then((Calculator) => {this.setState({ calculator: Calculator.default })
+
   let today = new Date().toJSON().slice(0,10);
   let days = 0;
 
@@ -76,6 +82,7 @@ onSubmit = () => { // Submit button on default screen
       submitted: true, 
       isVisisble: true});
   }
+})
 }
 
 setAdvanced = () => { // Go to advanced options toggle.
@@ -102,10 +109,11 @@ allProjections = () => {  // Checks all boxes and adds in all possible projectio
 })
 }
 
-displayInfo = () => { // Shows tooltip regarding calculations.
-  this.setState({showInfo: true})
-  this.state.displayInfoAnimation ? this.setState({displayInfoAnimation: false}) : this.setState({displayInfoAnimation: true});
+gameVersionSelect = () => {
+  !this.state.isGlobal ? this.setState({isGlobal: true}) : this.setState({isGlobal: false});
+  this.setState({key: Math.random()})
 }
+
   render() {
     return (
       <div className="App">
@@ -114,6 +122,9 @@ displayInfo = () => { // Shows tooltip regarding calculations.
         {this.state.submitted === false ?
           <div id="AdvancedFeatures">
             <button onClick={this.setAdvanced}>Advanced Options</button>
+            <div id="gameVersion"><p className="titles">Game Version:</p>
+              <span>Global <Toggle className="gameToggle" onChange={this.gameVersionSelect} icons={false} /> Japan </span>
+            </div>
             <SubmitForm 
             setStartDate={this.setStartDate} 
             setCurrentGems={this.setCurrentGems} 
@@ -129,9 +140,12 @@ displayInfo = () => { // Shows tooltip regarding calculations.
             allProjections={this.allProjections}
             allChecked={this.state.allChecked}
             hideBoxes={this.state.hideBoxes}
+            Toggle={Toggle}
+            isGlobal={this.state.isGlobal}
+            key={this.state.key}
             />
             </div> :
-          <Calculator 
+          <this.state.calculator
           goBack={this.goBack} 
           days={this.state.days} 
           currentGems={this.state.currentGems} 
@@ -140,6 +154,7 @@ displayInfo = () => { // Shows tooltip regarding calculations.
           storyModeGems={this.state.storyModeGems}
           newStory={this.state.newStory}
           tmGems={this.state.tmGems}
+          isGlobal={this.state.isGlobal}
           />
         }
             </Animated>

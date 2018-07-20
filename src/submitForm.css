@@ -20,6 +20,11 @@
 	border-radius: 15px;
 }
 
+.gameToggle {
+	position: relative;
+	top: 6px;
+}
+
 @media screen and (max-width: 850px) {
     .projections {
        	width: 400px;
@@ -30,6 +35,12 @@
     .projections {
        	width: 70%;
     }
+
+
+    .gameToggle {
+	position: relative;
+	top: 2px;
+	}
 }
 
 .everything {

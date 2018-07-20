@@ -203,3 +203,17 @@ button:hover {
       top: 3px;
     }
 }
+
+#verText {
+  padding: 0px;
+  margin-bottom: 5px
+}
+
+#gameVersion {
+  padding-bottom: 0px;
+}
+
+.titles {
+  font-weight: bold;
+  color: gold;
+}
