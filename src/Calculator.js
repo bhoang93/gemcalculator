@@ -73,12 +73,8 @@ const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyM
 			return milestoneGems
 	}
 
-	const chopperman = (days, isGlobal) => {
-
-		let weeklyGems = 2;
-		if (!isGlobal) {weeklyGems = 7}
-
-		return (Math.floor(days / 7)) * weeklyGems; // 2 Gems per week for finishing Chopperman missions.
+	const chopperman = (days) => {
+		return days
 	}
 
 	const colosseum = (days) => {
@@ -96,13 +92,13 @@ const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyM
 	const tmGemsCalc = (days) => {
 		let gems = 0;
 		if (tmGems) {
-			gems = (Math.floor(days / 28)) * 5 // 5 Gems every month for new TMs.
+			gems = (Math.floor(days / 28)) * 20 // 20 Gems every month for new TMs.
 		}
 		return gems;
 	}
 
 	const total = (days, isGlobal, daysLoggedIn) => { // Find total gems.
-		return days + fortnight(days) + milestone(days, daysLoggedIn) + chopperman(days, isGlobal) + colosseum(days) + storyModeGems + Number(currentGems) + tmGemsCalc(days) + newStoryGems(days);
+		return days + fortnight(days) + milestone(days, daysLoggedIn) + chopperman(days) + colosseum(days) + storyModeGems + Number(currentGems) + tmGemsCalc(days) + newStoryGems(days);
 	}
 
 	return(
