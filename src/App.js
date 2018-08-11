@@ -24,6 +24,7 @@ const initialState = {
       isGlobal: true,
       calculator: null,
       key: 0,
+      tmGemsInput: 5,
     }
 
 class App extends Component {
@@ -40,6 +41,10 @@ setEndDate = (event) => { // Function to set the end date.
 } 
 setCurrentGems = (event) => { // Function setting how many gems the user has at the moment.
   this.setState({currentGems: event.target.value})
+} 
+
+setTmGemsInput = (event) => { // Set how many gems you get per TM.
+  this.setState({tmGemsInput: event.target.value})
 } 
 
 setDaysLoggedIn = (event) => { // How many days a user has already logged in so they can properly see their milestone gems.
@@ -117,7 +122,7 @@ gameVersionSelect = () => {
   render() {
     return (
       <div className="App">
-      <h1>RAINBOW GEM CALCULATOR</h1>
+      <h1>Rainbow Gem Calculator</h1>
       <Animated animationIn="lightSpeedIn" animationOut="fadeOut" isVisible={this.state.mainAnimation}>
         {this.state.submitted === false ?
           <div id="AdvancedFeatures">
@@ -142,7 +147,9 @@ gameVersionSelect = () => {
             hideBoxes={this.state.hideBoxes}
             Toggle={Toggle}
             isGlobal={this.state.isGlobal}
+            setTmGemsInput={this.setTmGemsInput}
             key={this.state.key}
+            tmGems={this.state.tmGems}
             />
             </div> :
           <this.state.calculator
@@ -155,6 +162,7 @@ gameVersionSelect = () => {
           newStory={this.state.newStory}
           tmGems={this.state.tmGems}
           isGlobal={this.state.isGlobal}
+          tmGemsInput={this.state.tmGemsInput}
           />
         }
             </Animated>

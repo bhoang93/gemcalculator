@@ -1,9 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Cabin', sans-serif;
   color: white;
-  background: linear-gradient(89deg, #00d2ff 0%, #3a7bd5 100%)
+  background: linear-gradient(90deg, #fc00ff 0%, #00dbde 100%)
 }
 
 .infoBox {

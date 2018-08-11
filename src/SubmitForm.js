@@ -13,7 +13,7 @@ render() {
 	const importantDates = (setEndDate) => {
 	return (
 				<div>
-				<h2>Important Dates:</h2> 
+				<p className="titles">Important Dates:</p> 
 				<div className='choices'>
 					<select onClick={setEndDate}>
 						<option value='0'>---</option>
@@ -35,41 +35,42 @@ render() {
 		<p className="titles">Story Island you are Currently On:</p> <select onClick={setStoryGems}>
 					<option value="0" className="option">Story Mode Completed</option>
 					<option value="9">Coliseum Lodging to Officer’s Tower</option>
-					<option value="18">Port Town Acacia to Coliseum</option>
-					<option value="27">Land of Ice to Lab R-1</option>
-					<option value="36">Burning Island to Research Lab Entrance</option>
-					<option value="45">Execution Platform of the King to Ark of Noah</option>
-					<option value="54">Deep-Sea Aphotic Zone to Ryugu Palace</option>
-					<option value="62">Sabaody Archipelago Redux</option>
-					<option value="71">3D2Y</option>
-					<option value="85">The Bay – Oris Plaza</option>
-					<option value="94">Marineford Bay</option>
-					<option value="103">Impel Down</option>
-					<option value="111">Amazon Lily</option>
-					<option value="120">Sabaody Archipelago</option>
-					<option value="128">Moria’s Mast Mansion</option>
-					<option value="136">Mouth Gate – Hogback’s Mansion</option>
-					<option value="147">Tower of Law/Gates of Justice</option>
-					<option value="155">Enies Lobby Front Gate</option>
-					<option value="164">Water Seven</option>
-					<option value="172">Long Ring Long Land</option>
-					<option value="184">Upper Yard ~ Ark Maxim</option>
-					<option value="193">Angel Island ~ Upper Yard</option>
-					<option value="202">Jaya</option>
-					<option value="216">Alubarna</option>
-					<option value="225">Nanohana > Rainbase</option>
-					<option value="234">Drum Kingdom</option>
-					<option value="243">Little Garden</option>
-					<option value="252">Whiskey Peak</option>
-					<option value="260">Twin Cape</option>
+					<option value="18">Coliseum Lodging to Officer’s Tower</option>
+					<option value="27">Port Town Acacia to Coliseum</option>
+					<option value="36">Land of Ice to Lab R-1</option>
+					<option value="45">Burning Island to Research Lab Entrance</option>
+					<option value="54">Execution Platform of the King to Ark of Noah</option>
+					<option value="63">Deep-Sea Aphotic Zone to Ryugu Palace</option>
+					<option value="72">Sabaody Archipelago Redux</option>
+					<option value="80">3D2Y</option>
+					<option value="94">The Bay – Oris Plaza</option>
+					<option value="103">Marineford Bay</option>
+					<option value="112">Impel Down</option>
+					<option value="120">Amazon Lily</option>
+					<option value="129">Sabaody Archipelago</option>
+					<option value="137">Moria’s Mast Mansion</option>
+					<option value="146">Mouth Gate – Hogback’s Mansion</option>
+					<option value="156">Tower of Law/Gates of Justice</option>
+					<option value="165">Enies Lobby Front Gate</option>
+					<option value="174">Water Seven</option>
+					<option value="183">Long Ring Long Land</option>
+					<option value="192">Upper Yard ~ Ark Maxim</option>
+					<option value="201">Angel Island ~ Upper Yard</option>
+					<option value="210">Jaya</option>
+					<option value="219">Alubarna</option>
+					<option value="228">Nanohana > Rainbase</option>
+					<option value="237">Drum Kingdom</option>
+					<option value="246">Little Garden</option>
+					<option value="255">Whiskey Peak</option>
+					<option value="264">Twin Cape</option>
 					<option value="269">Loguetown</option>
-					<option value="273">Arlong Park</option>
-					<option value="277">Baratie</option>
-					<option value="281">Syrup Village</option>
-					<option value="290">Orange Town</option>
-					<option value="294">Shells Town</option>
-					<option value="295">Alvida’s Hideout</option>
-					<option value="295">Fushia Village</option>
+					<option value="282">Arlong Park</option>
+					<option value="286">Baratie</option>
+					<option value="290">Syrup Village</option>
+					<option value="299">Orange Town</option>
+					<option value="303">Shells Town</option>
+					<option value="304">Alvida’s Hideout</option>
+					<option value="304">Fushia Village</option>
 				</select>
 				</div>)
 			} 
@@ -119,7 +120,7 @@ render() {
 				</div>)
 	}
 }
-	const { isGlobal, Toggle, hideBoxes, allChecked, setStartDate, setCurrentGems, setEndDate, onSubmit, advanced, setDaysLoggedIn, setStoryGems, setAdvDates, advancedDates, newStoryCheck, tmGemsCheck, allProjections } = this.props;
+	const { tmGems, setTmGemsInput, isGlobal, Toggle, hideBoxes, allChecked, setStartDate, setCurrentGems, setEndDate, onSubmit, advanced, setDaysLoggedIn, setStoryGems, setAdvDates, advancedDates, newStoryCheck, tmGemsCheck, allProjections } = this.props;
 		return(
 			<div>
 			<span><p className="titles">Current number of gems:</p> <input className="gemBox" type='number' min="0" onChange={setCurrentGems}></input></span>
@@ -134,13 +135,13 @@ render() {
 		{storySelector()}
 	<div className="projections">
 		<h3>Include Projections For:</h3>
-		<span className="everything">Everything&nbsp;<Toggle id="allCheck" onChange={allProjections} /></span>
-		{
-			!hideBoxes ?
-			<div><div>Future Story Islands <input type="checkbox" onChange={newStoryCheck}></input></div>
-			<div>Treasure Map Mode <input type="checkbox" onChange={tmGemsCheck}></input></div></div>
-			: <div></div>
-		}
+			<div>
+			<div><input type="checkbox" onChange={newStoryCheck}></input>Future Story Islands</div>
+			<div><input type="checkbox" onChange={tmGemsCheck}></input>Treasure Map Mode</div>
+			{
+				tmGems ? <p>Gems Earned Per TM:<input className="gemBox" type='number' min="0" onChange={setTmGemsInput}></input></p> : null
+			}
+			</div>
 	</div>
 
 <div>

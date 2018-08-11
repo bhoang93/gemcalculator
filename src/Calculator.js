@@ -3,7 +3,7 @@ import './Calculator.css'
 import {Animated} from 'react-animated-css';
 
 
-const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyModeGems, newStory, tmGems, isGlobal }) => {
+const Calculator = ({ tmGemsInput, days, currentGems, goBack, isVisible, daysLoggedIn, storyModeGems, newStory, tmGems, isGlobal }) => {
 
 	const fortnight = (days) => {
 		return (Math.floor(days / 14)) * 4; // 4 gems per 2 weeks for fortnights.
@@ -89,16 +89,16 @@ const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyM
 		return gems;
 	}
 
-	const tmGemsCalc = (days) => {
+	const tmGemsCalc = (days, tmGemsInput) => {
 		let gems = 0;
 		if (tmGems) {
-			gems = (Math.floor(days / 28)) * 20 // 20 Gems every month for new TMs.
+			gems = (Math.floor(days / 28)) * tmGemsInput // 20 Gems every month for new TMs.
 		}
 		return gems;
 	}
 
 	const total = (days, isGlobal, daysLoggedIn) => { // Find total gems.
-		return days + fortnight(days) + milestone(days, daysLoggedIn) + chopperman(days) + colosseum(days) + storyModeGems + Number(currentGems) + tmGemsCalc(days) + newStoryGems(days);
+		return days + fortnight(days) + milestone(days, daysLoggedIn) + chopperman(days) + colosseum(days) + storyModeGems + Number(currentGems) + tmGemsCalc(days, tmGemsInput) + newStoryGems(days);
 	}
 
 	return(
@@ -121,7 +121,7 @@ const Calculator = ({ days, currentGems, goBack, isVisible, daysLoggedIn, storyM
 		}
 		{
 			tmGems === true ?
-			<p>{`${tmGemsCalc(days)} from Treasure Map Mode.`}</p>
+			<p>{`${tmGemsCalc(days, tmGemsInput)} from Treasure Map Mode.`}</p>
 			: <p></p>
 		}
 			<div className="chopper">
