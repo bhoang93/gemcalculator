@@ -123,6 +123,7 @@ gameVersionSelect = () => {
     return (
       <div className="App">
       <h1>Rainbow Gem Calculator</h1>
+      <a href="https://bhoang93.github.io/gemcalculator/">This version will no longer be updated, click here to go to updated version.</a>
       <Animated animationIn="lightSpeedIn" animationOut="fadeOut" isVisible={this.state.mainAnimation}>
         {this.state.submitted === false ?
           <div id="AdvancedFeatures">
