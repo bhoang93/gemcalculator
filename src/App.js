@@ -3,6 +3,7 @@ import './App.css';
 import SubmitForm from './SubmitForm';
 import {Animated} from 'react-animated-css';
 import Toggle from 'react-toggle';
+import Background from './Background'
 
 const initialState = {
       days: 0,
@@ -13,7 +14,7 @@ const initialState = {
       advanced: false,
       isVisisble: false,
       showInfo: false,
-      daysLoggedIn: 0,
+      daysLoggedIn: null,
       storyModeGems: 0,
       advancedDates: false,
       newStory: false,
@@ -81,7 +82,7 @@ onSubmit = () => { // Submit button on default screen
   : days = Math.floor((Date.parse(this.state.endDate) - Date.parse(this.state.startDate)) / 86400000)
 
 
-  if (this.state.startDate !== 0 && this.state.endDate !== "0") {
+  if (this.state.startDate !== 0 && this.state.endDate !== "0" && this.state.currentGems !== '' && this.state.daysLoggedIn !== null) {
     this.setState({
       days: days,
       submitted: true, 
@@ -122,15 +123,15 @@ gameVersionSelect = () => {
   render() {
     return (
       <div className="App">
-      <h1>Rainbow Gem Calculator</h1>
-      <a href="https://bhoang93.github.io/gemcalculator/">This version will no longer be updated, click here to go to updated version.</a>
-      <Animated animationIn="lightSpeedIn" animationOut="fadeOut" isVisible={this.state.mainAnimation}>
+      <div className="calculator">
+      <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={this.state.mainAnimation}>
+            <h1>RAINBOW GEM CALCULATOR</h1>
         {this.state.submitted === false ?
           <div id="AdvancedFeatures">
             <button onClick={this.setAdvanced}>Advanced Options</button>
             <div id="gameVersion"><p className="titles">Game Version:</p>
               <span>Global <Toggle className="gameToggle" onChange={this.gameVersionSelect} icons={false} /> Japan </span>
-            </div>
+            </div><br />
             <SubmitForm 
             setStartDate={this.setStartDate} 
             setCurrentGems={this.setCurrentGems} 
@@ -167,6 +168,8 @@ gameVersionSelect = () => {
           />
         }
             </Animated>
+      </div>
+            <Background />
       </div>
     );
   }

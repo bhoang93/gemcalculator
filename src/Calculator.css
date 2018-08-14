@@ -1,1 +1,6 @@
 .chopper{display: flex;justify-content: center;}.chopperimg{width: fixed;}.speech-bubble{width: 300px;position: relative;background: #ffffff;color: black;border-radius: .6em; text-align: center;font-size: 20px;font-weight: bold;padding: 25px}.speech-bubble:after{content: '';position: absolute;left: 0; top: 50%; width: 0; height: 0;border: 20px solid transparent;border-right-color: #ffffff;border-left: 0;border-bottom: 0;margin-top: -10px;margin-left: -20px;}
+
+p {
+	color: white;
+	font-weight: bold;
+}

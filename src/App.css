@@ -2,25 +2,37 @@
   text-align: center;
 }
 
+.calculator {
+  position: relative;
+  z-index: 2;
+}
+
 h1 {
-  font-size: 2em;
+  color: white;
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 3px #77C9D8; 
 }
 
 button {
-  background: #F7971E;
-  background-image: linear-gradient(to bottom, #ff00cc, #333399);
-  -webkit-border-radius: 60;
-  -moz-border-radius: 60;
-  border-radius: 60px;
-	font-family: 'PT Sans', sans-serif;
+  background: #A5E4F0;
+  border-radius: 30px;
+  border: none;
   color: #ffffff;
   font-size: 15px;
+  font-weight: bold;
   padding: 8px 20px 9px 20px;
   text-decoration: none;
+  transition: background 0.3s, transform 0.2s
 }
 
 button:hover {
   text-decoration: none;
+  cursor: pointer;
+  background: #77C9D8;
+}
+
+button:active {
+  transform: scale(0.9, 0.9);
 }
 
 .react-toggle {
@@ -67,22 +79,22 @@ button:hover {
   height: 24px;
   padding: 0;
   border-radius: 30px;
-  background-color: #4D4D4D;
+  background-color: #77C9D8;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
 .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: #000000;
+  background-color: #77C9D8;
 }
 
 .react-toggle--checked .react-toggle-track {
-  background-color: #19AB27;
+  background-color: #77C9D8;
 }
 
 .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: #128D15;
+  background-color: #77C9D8;
 }
 
 .react-toggle-track-check {
@@ -150,7 +162,7 @@ button:hover {
 
 .react-toggle--checked .react-toggle-thumb {
   left: 27px;
-  border-color: #19AB27;
+  border-color: #77C9D8;
 }
 
 .react-toggle--focus .react-toggle-thumb {
@@ -200,6 +212,6 @@ button:hover {
 }
 
 .titles {
-  font-weight: bold;
-  color: #E4FF61;
+  font-weight: 900;
+  color: black;
 }

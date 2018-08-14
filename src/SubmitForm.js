@@ -32,7 +32,7 @@ render() {
 	const storySelector = () => {
 		if (this.props.isGlobal) { return(				
 		<div>
-		<p className="titles">Story Island you are Currently On:</p> <select onClick={setStoryGems}>
+		<p className="titles">Story Island you are Currently On:</p> <select className="storySelect" onClick={setStoryGems}>
 					<option value="0" className="option">Story Mode Completed</option>
 					<option value="9">Coliseum Lodging to Officer’s Tower</option>
 					<option value="18">Coliseum Lodging to Officer’s Tower</option>
@@ -76,7 +76,7 @@ render() {
 			} 
 			else { return(
 					<div>
-					<p className="titles">Story Island you are Currently On:</p> <select onClick={setStoryGems}>
+					<p className="titles">Story Island you are Currently On:</p> <select className="storySelect" onClick={setStoryGems}>
 					<option value="0" className="option">Story Mode Completed</option>
 					<option value="8">Royal Palace Top Floor to Town Center</option>
 					<option value="17">Former King's Land to Royal Palace Top Floor</option>
@@ -122,19 +122,22 @@ render() {
 }
 	const { tmGems, setTmGemsInput, isGlobal, Toggle, hideBoxes, allChecked, setStartDate, setCurrentGems, setEndDate, onSubmit, advanced, setDaysLoggedIn, setStoryGems, setAdvDates, advancedDates, newStoryCheck, tmGemsCheck, allProjections } = this.props;
 		return(
-			<div>
+			<div className="submitDiv">
 			<span><p className="titles">Current number of gems:</p> <input className="gemBox" type='number' min="0" onChange={setCurrentGems}></input></span>
+			<hr />
 			<span><p className="titles">Total days logged in:</p> <input className="gemBox" type='number' min="0" onChange={setDaysLoggedIn}></input></span>
+			<hr />
 			{ advanced === false ?
 				<div>
 				{importantDates(setEndDate)}
 				<button onClick={onSubmit}>Calculate</button>
 				</div> :
-				      <Animated animationIn="bounceIn">
+				      <Animated animationIn="fadeIn">
 				<div>
 		{storySelector()}
-	<div className="projections">
-		<h3>Include Projections For:</h3>
+		<hr />
+	<div>
+		<p className="titles">Include Projections For:</p>
 			<div>
 			<div><input type="checkbox" onChange={newStoryCheck}></input>Future Story Islands</div>
 			<div><input type="checkbox" onChange={tmGemsCheck}></input>Treasure Map Mode</div>
@@ -143,6 +146,8 @@ render() {
 			}
 			</div>
 	</div>
+
+<hr />
 
 <div>
   <p className="titles">Choose Own Dates</p>

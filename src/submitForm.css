@@ -1,3 +1,27 @@
+.submitDiv {
+	background-color: rgba(255, 255, 255, 0.2);
+	width: 30%;
+	margin: auto;
+	border-radius: 8px;
+	padding: 10px;
+	box-shadow: 17px 16px 6px -10px rgba(0,0,0,0.2);
+}
+
+@media only screen and (max-width: 800px) {
+ .submitDiv {
+ 	width: 70%;
+ }
+}
+
+hr {
+	width: 90%;
+ 	border: 0;
+ 	height: 1px;
+ 	background: white;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
 .gemBox {
 	width: 75px;
 }
@@ -10,37 +34,9 @@
 	background-color: grey;
 }
 
-.projections {
-  	background-color: #7106FF;
-	width: 25%;
-	margin: auto;
-	padding: 10px;
-	padding-top: 2px;
-	margin-top: 10px;
-	border-radius: 15px;
-}
-
 .gameToggle {
 	position: relative;
 	top: 6px;
-}
-
-@media screen and (max-width: 850px) {
-    .projections {
-       	width: 400px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .projections {
-       	width: 70%;
-    }
-
-
-    .gameToggle {
-	position: relative;
-	top: 2px;
-	}
 }
 
 .everything {
@@ -50,4 +46,8 @@
 
 h3 {
 	font size: 10rem;
+}
+
+.storySelect {
+	width: 80%;
 }

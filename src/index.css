@@ -1,13 +1,25 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Cabin', sans-serif;
-  color: white;
-  background: linear-gradient(90deg, #fc00ff 0%, #00dbde 100%)
+  font-family: 'Titillium Web', sans-serif;
 }
 
 .infoBox {
     position: absolute;
     bottom: 30px;
     right: 30px;
+}
+
+select, input {
+  background-color: #FFFEFF;
+  border: none;
+  outline: none;
+}
+
+input {
+  transition: background-color 0.2s
+}
+
+input:focus, select:focus {
+	background-color: #A5E4F0;
 }
