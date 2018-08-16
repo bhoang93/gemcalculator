@@ -32,9 +32,9 @@ render() {
 	const storySelector = () => {
 		if (this.props.isGlobal) { return(				
 		<div>
-		<p className="titles">Story Island you are Currently On:</p> <select className="storySelect" onClick={setStoryGems}>
+		<p className="titles">Current Story Island:</p> <select className="storySelect" onClick={setStoryGems}>
 					<option value="0" className="option">Story Mode Completed</option>
-					<option value="9">Coliseum Lodging to Officer’s Tower</option>
+					<option value="9">Dressrosa - Former King's Land to Royal Palace Top Floor</option>
 					<option value="18">Coliseum Lodging to Officer’s Tower</option>
 					<option value="27">Port Town Acacia to Coliseum</option>
 					<option value="36">Land of Ice to Lab R-1</option>
@@ -76,7 +76,7 @@ render() {
 			} 
 			else { return(
 					<div>
-					<p className="titles">Story Island you are Currently On:</p> <select className="storySelect" onClick={setStoryGems}>
+					<p className="titles">Current Story Island:</p> <select className="storySelect" onClick={setStoryGems}>
 					<option value="0" className="option">Story Mode Completed</option>
 					<option value="8">Royal Palace Top Floor to Town Center</option>
 					<option value="17">Former King's Land to Royal Palace Top Floor</option>
@@ -120,7 +120,7 @@ render() {
 				</div>)
 	}
 }
-	const { tmGems, setTmGemsInput, isGlobal, Toggle, hideBoxes, allChecked, setStartDate, setCurrentGems, setEndDate, onSubmit, advanced, setDaysLoggedIn, setStoryGems, setAdvDates, advancedDates, newStoryCheck, tmGemsCheck, allProjections } = this.props;
+	const { AdvDatesText, tmGems, setTmGemsInput, isGlobal, Toggle, hideBoxes, allChecked, setStartDate, setCurrentGems, setEndDate, onSubmit, advanced, setDaysLoggedIn, setStoryGems, setAdvDates, advancedDates, newStoryCheck, tmGemsCheck, allProjections } = this.props;
 		return(
 			<div className="submitDiv">
 			<span><p className="titles">Current number of gems:</p> <input className="gemBox" type='number' min="0" onChange={setCurrentGems}></input></span>
@@ -147,11 +147,10 @@ render() {
 			</div>
 	</div>
 
-<hr />
+<hr /><br />
 
 <div>
-  <p className="titles">Choose Own Dates</p>
-   <Toggle onChange={setAdvDates} />
+  <button onClick={setAdvDates}>{AdvDatesText()}</button>
 </div>
 
 	{

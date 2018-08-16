@@ -1,6 +1,7 @@
 import React from 'react'
 import './Calculator.css'
 import {Animated} from 'react-animated-css';
+import chopper from './chopper.png'
 
 
 const Calculator = ({ tmGemsInput, days, currentGems, goBack, isVisible, daysLoggedIn, storyModeGems, newStory, tmGems, isGlobal }) => {
@@ -125,7 +126,7 @@ const Calculator = ({ tmGemsInput, days, currentGems, goBack, isVisible, daysLog
 			: <p></p>
 		}
 			<div className="chopper">
-				<img className="chopperimg" src='https://i.imgur.com/SdfzPA4.png' alt='Chopper Says'/>
+				<img className="chopperimg" src={chopper} alt='Chopper Says'/>
 				<p className='speech-bubble'>{`You will have at least ${total(days, isGlobal, daysLoggedIn)} gems in ${days} day(s).`}</p>
 			</div>
 		<button onClick={goBack}>Go Back</button>

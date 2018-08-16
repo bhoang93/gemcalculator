@@ -34,6 +34,20 @@ class App extends Component {
     this.state = initialState
   }
 
+moreOptionsText = () => {
+  if (this.state.advanced) {
+    return 'Basic Options'
+  }
+  return 'More Options'
+}
+
+AdvDatesText = () => {
+  if (this.state.advancedDates) {
+    return 'Important Dates'
+  }
+  return 'Choose Own Dates'
+}
+
 setStartDate = (event) => { // Function to set the starting date.
   this.setState({startDate: event.target.value})
 } 
@@ -128,10 +142,10 @@ gameVersionSelect = () => {
             <h1>RAINBOW GEM CALCULATOR</h1>
         {this.state.submitted === false ?
           <div id="AdvancedFeatures">
-            <button onClick={this.setAdvanced}>Advanced Options</button>
-            <div id="gameVersion"><p className="titles">Game Version:</p>
-              <span>Global <Toggle className="gameToggle" onChange={this.gameVersionSelect} icons={false} /> Japan </span>
-            </div><br />
+            <button onClick={this.setAdvanced}>{this.moreOptionsText()}</button>
+            <div id="gameVersion"><span className="titles">Game Version: </span>
+            <span>Global <Toggle className="gameToggle" onChange={this.gameVersionSelect} icons={false} /> Japan</span>
+            </div>
             <SubmitForm 
             setStartDate={this.setStartDate} 
             setCurrentGems={this.setCurrentGems} 
@@ -152,6 +166,7 @@ gameVersionSelect = () => {
             setTmGemsInput={this.setTmGemsInput}
             key={this.state.key}
             tmGems={this.state.tmGems}
+            AdvDatesText={this.AdvDatesText}
             />
             </div> :
           <this.state.calculator
