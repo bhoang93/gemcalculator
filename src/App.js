@@ -3,7 +3,9 @@ import './App.css';
 import SubmitForm from './SubmitForm';
 import {Animated} from 'react-animated-css';
 import Toggle from 'react-toggle';
-import Background from './Background'
+import Background from './Background';
+import Modal from './Modal';
+import InfoBox from './InfoBox';
 
 const initialState = {
       days: 0,
@@ -134,11 +136,25 @@ gameVersionSelect = () => {
   this.setState({key: Math.random()})
 }
 
+toggleModal = () => {
+  this.setState(prevState => ({
+    ...prevState,
+    showInfo: !prevState.showInfo
+  }))
+}
+
   render() {
     return (
       <div className="App">
+      {
+        this.state.showInfo && 
+        <Modal>
+          <InfoBox toggleModal={this.toggleModal} />
+        </Modal>
+      }
       <div className="calculator">
       <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={this.state.mainAnimation}>
+        <button className="modalButton" onClick={this.toggleModal}>?</button>
             <h1>RAINBOW GEM CALCULATOR</h1>
         {this.state.submitted === false ?
           <div id="AdvancedFeatures">

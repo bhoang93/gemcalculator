@@ -117,12 +117,12 @@ const Calculator = ({ tmGemsInput, days, currentGems, goBack, isVisible, daysLog
 		<p>{`${colosseum(days)} gems from new Colosseum rotations.`}</p>
 		{
 			newStory === true ?
-			<p>{`${newStoryGems(days)} from upcoming story islands.`}</p>
+			<p>{`${newStoryGems(days)} gems from upcoming story islands.`}</p>
 			: <p></p>
 		}
 		{
 			tmGems === true ?
-			<p>{`${tmGemsCalc(days, tmGemsInput)} from Treasure Map Mode.`}</p>
+			<p>{`${tmGemsCalc(days, tmGemsInput)} gems from Treasure Map Mode.`}</p>
 			: <p></p>
 		}
 			<div className="chopper">

@@ -218,3 +218,9 @@ button:active {
   font-weight: 900;
   color: black;
 }
+
+.modalButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}

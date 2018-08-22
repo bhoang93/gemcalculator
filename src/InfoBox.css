@@ -1,0 +1,74 @@
+.infoBoxBackground {
+	background-color: rgba(0, 0, 0, 0.7);
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.infoBoxModal {
+	border-radius: 10px;
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+	width: 30%;
+}
+
+.modalText {
+	color: black;
+	font-size: 1rem;
+	width: 80%;
+	margin: auto;
+}
+
+ul {
+	list-style-type: square;
+}
+
+li {
+	padding-bottom: 1vw;
+	margin-left: -1em;
+}
+
+.closeModalContainer {
+	text-align: right;
+}
+
+.closeModal {
+	cursor: pointer;
+	font-size: 2rem;
+	font-weight: bold;
+	position: relative;
+	right: 10px;
+	color: grey;
+}
+
+.closeModal:hover {
+	color: black;
+}
+
+@media only screen and (max-width: 1500px) {
+	.infoBoxModal {
+		width: 60%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.infoBoxModal {
+		width: 70%;
+	}
+
+	.modalText {
+		font-size: 0.75rem;
+	}
+
+	li {
+		margin-left: -2em;
+	}
+}
+
+h3 {
+	margin: 0;
+}
