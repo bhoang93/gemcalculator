@@ -1,9 +1,12 @@
 {
-  "main.css": "static/css/main.115d9573.css",
-  "main.css.map": "static/css/main.115d9573.css.map",
-  "main.js": "static/js/main.c1d3581f.js",
-  "main.js.map": "static/js/main.c1d3581f.js.map",
-  "static/js/0.dbfe82ca.chunk.js": "static/js/0.dbfe82ca.chunk.js",
-  "static/js/0.dbfe82ca.chunk.js.map": "static/js/0.dbfe82ca.chunk.js.map",
-  "static\\media\\chopper.png": "static/media/chopper.d3297e92.png"
+  "main.css": "static/css/main.f199cff4.css",
+  "main.css.map": "static/css/main.f199cff4.css.map",
+  "main.js": "static/js/main.e4e391ed.js",
+  "main.js.map": "static/js/main.e4e391ed.js.map",
+  "static/js/0.7fc9de28.chunk.js": "static/js/0.7fc9de28.chunk.js",
+  "static/js/0.7fc9de28.chunk.js.map": "static/js/0.7fc9de28.chunk.js.map",
+  "static\\media\\chopper.png": "static/media/chopper.d3297e92.png",
+  "static\\media\\wave-bot.png": "static/media/wave-bot.6cd18bc0.png",
+  "static\\media\\wave-mid.png": "static/media/wave-mid.ba75e0c9.png",
+  "static\\media\\wave-top.png": "static/media/wave-top.05d52988.png"
 }
