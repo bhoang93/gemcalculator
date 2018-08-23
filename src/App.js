@@ -108,7 +108,8 @@ onSubmit = () => { // Submit button on default screen
 }
 
 setAdvanced = () => { // Go to advanced options toggle.
-  this.state.advanced === false ? this.setState({advanced:true}) : this.setState({advanced:false});
+  this.setState({advanced: !this.state.advanced});
+  this.setState({newStory: false, tmGems: false});
 }
 
 goBack = () => { // Return to start screen after pressing submit.
