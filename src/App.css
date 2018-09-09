@@ -10,7 +10,7 @@
 h1 {
   color: white;
   font-size: 2.5rem;
-  text-shadow: 1px 1px 3px #77C9D8; 
+  text-shadow: 1px 1px 3px #77C9D8;
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -35,6 +35,12 @@ button:hover {
 
 button:active {
   transform: scale(0.9, 0.9);
+}
+
+@media only screen and (max-width: 600px) {
+ button {
+  padding: 6px 15px 7px 15px;
+ }
 }
 
 .react-toggle {
@@ -223,4 +229,9 @@ button:active {
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+
+.required {
+  font-style: italic;
+  font-size: 0.75rem;
 }
