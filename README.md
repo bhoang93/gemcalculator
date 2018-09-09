@@ -1,1 +1,3 @@
-The calculator has moved here: https://gem-calculator.herokuapp.com/
+Live version: [https://bhoang93.github.io/gemcalculator/(https://bhoang93.github.io/gemcalculator/)
+
+- Created using Create React App.
