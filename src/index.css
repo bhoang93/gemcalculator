@@ -1,25 +1,28 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "Titillium Web", sans-serif;
+  color: #f1faee;
 }
 
 .infoBox {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
 }
 
-select, input {
+select,
+input {
   background-color: white;
   border: none;
-  box-shadow: 2px 2px 5px #A5E4F0;
+  box-shadow: 2px 2px 5px #a5e4f0;
 }
 
 input {
-  transition: background-color 0.2s
+  transition: background-color 0.2s;
 }
 
-input:focus, select:focus {
-	background-color: #A5E4F0;
+input:focus,
+select:focus {
+  background-color: #a5e4f0;
 }

@@ -5,10 +5,6 @@ import { Animated } from "react-animated-css";
 import StorySelector from "./StorySelector";
 
 class SubmitForm extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     {
       const importantDates = setEndDate => {
@@ -34,9 +30,6 @@ class SubmitForm extends Component {
         tmGems,
         setTmGemsInput,
         isGlobal,
-        Toggle,
-        hideBoxes,
-        allChecked,
         setStartDate,
         setCurrentGems,
         setEndDate,
@@ -47,8 +40,7 @@ class SubmitForm extends Component {
         setAdvDates,
         advancedDates,
         newStoryCheck,
-        tmGemsCheck,
-        allProjections
+        tmGemsCheck
       } = this.props;
       return (
         <div className="submitDiv">
@@ -81,8 +73,8 @@ class SubmitForm extends Component {
             <Animated animationIn="fadeIn">
               <div>
                 <StorySelector
-                  setStoryGems={this.props.setStoryGems}
-                  isGlobal={this.props.isGlobal}
+                  setStoryGems={setStoryGems}
+                  isGlobal={isGlobal}
                 />
                 <hr />
                 <div>

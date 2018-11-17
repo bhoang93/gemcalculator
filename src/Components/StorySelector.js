@@ -3,40 +3,40 @@ import React from "react";
 const storyGemsArray = [
   0, // 0 Fushia Village
   0, // 1 Alvida's Hideout
-  9, // 2 Shells Town
-  9, // 3 Orange Town
-  9, // 4 Syrup Village
-  9, // 5 Baratie
-  9, // 6 Arlong Park
-  9, // 7 Logue Town
-  9, // 8 Twin Cape
+  8, // 2 Shells Town
+  7, // 3 Orange Town
+  3, // 4 Syrup Village
+  3, // 5 Baratie
+  3, // 6 Arlong Park
+  8, // 7 Logue Town
+  8, // 8 Twin Cape
   9, // 9 Whiskey Peak
   9, // 10 Little Garden
   9, // 11 Drum Island
   9, // 12 Nanohana - Rainbase
-  9, // 13 Alubarna
+  14, // 13 Alubarna
   9, // 14 Jaya
   9, // 15 Angel Island - Upper Yard
-  9, // 16 Upper Yard - Ark Maxim
+  14, // 16 Upper Yard - Ark Maxim
   9, // 17 Water Seven
-  9, // 18 Long Ring Long Land
-  9, // 19 Enies Lobby Front Gate
+  8, // 18 Long Ring Long Land
+  7, // 19 Enies Lobby Front Gate
   9, // 20 Tower of Law - Gates of Justice
-  9, // 21 Mouth Gate - Hogback's Mansion
-  9, // 22 Moria's Mast Mansion
+  8, // 21 Mouth Gate - Hogback's Mansion
+  8, // 22 Moria's Mast Mansion
   9, // 23 Sabaody Archipelago
-  9, // 24 Amazon Lily
+  7, // 24 Amazon Lily
   9, // 25 Impel Down
   9, // 26 Marineford Bay
   9, // 27 The Bay - Oris Plaza
   9, // 28 3D2Y
-  9, // 29 Sabaody Archipelago Redux
+  8, // 29 Sabaody Archipelago Redux
   9, // 30 Deep-Sea Aphotic Zone to Ryugu Palace
   9, // 31 King Neptune's Execution Site - Noah's Ark
   9, // 32 Punk Hazard - Burning Lands to Laboratory
   9, // 33 Punk Hazard - Ice Lands to First Floor Room R
-  9, // 34 Dressrosa - Port Town Acacia to Coliseum
-  9, // 35 Dressrosa - Coliseum Lodging to Executive Tower
+  8, // 34 Dressrosa - Port Town Acacia to Coliseum
+  8, // 35 Dressrosa - Coliseum Lodging to Executive Tower
   9, // 36 Dressrosa - Former King's Land to Royal Palace Top Floor
   9, // 37 Dressrosa - Royal Palace Top Floor to Town Center
   9 // 38 Mokomo Dukedom
@@ -44,11 +44,26 @@ const storyGemsArray = [
 
 const StorySelector = ({ setStoryGems, isGlobal }) => {
   const storyGemsSum = begin => {
-    let end = 0;
-    !isGlobal ? (end = storyGemsArray.length - 1) : (end = 36);
+    let end = 37;
+    if (!isGlobal) {
+      end = storyGemsArray.length - 1;
+    }
     const gemSplit = storyGemsArray.slice(begin, end);
     const gemSum = gemSplit.reduce((total, num) => total + num, 0);
     return gemSum;
+  };
+
+  const japanStoryIslands = isGlobal => {
+    if (!isGlobal) {
+      return (
+        <React.Fragment>
+          <option value={storyGemsSum(38)}>Mokomo Dukedom</option>
+          <option value={storyGemsSum(37)}>
+            Dressrosa - Royal Palace Top Floor to Town Center
+          </option>
+        </React.Fragment>
+      );
+    }
   };
 
   return (
@@ -58,14 +73,7 @@ const StorySelector = ({ setStoryGems, isGlobal }) => {
         <option value="0" className="option">
           Story Mode Completed
         </option>
-        {!isGlobal ? (
-          <option value={storyGemsSum(38)}>Mokomo Dukedom</option>
-        ) : null}
-        {!isGlobal ? (
-          <option value={storyGemsSum(37)}>
-            Dressrosa - Royal Palace Top Floor to Town Center
-          </option>
-        ) : null}
+        {japanStoryIslands(isGlobal)}
         <option value={storyGemsSum(36)}>
           Dressrosa - Former King's Land to Royal Palace Top Floor
         </option>
@@ -87,7 +95,7 @@ const StorySelector = ({ setStoryGems, isGlobal }) => {
         <option value={storyGemsSum(28)}>3D2Y</option>
         <option value={storyGemsSum(27)}>The Bay – Oris Plaza</option>
         <option value={storyGemsSum(26)}>Marineford Bay</option>
-        <option value={storyGemsSum(25)}>Impel Down</option>
+        <option value={storyGemsSum(26)}>Impel Down</option>
         <option value={storyGemsSum(24)}>Amazon Lily</option>
         <option value={storyGemsSum(23)}>Sabaody Archipelago</option>
         <option value={storyGemsSum(22)}>Moria’s Mast Mansion</option>
@@ -100,7 +108,7 @@ const StorySelector = ({ setStoryGems, isGlobal }) => {
         <option value={storyGemsSum(15)}>Angel Island ~ Upper Yard</option>
         <option value={storyGemsSum(14)}>Jaya</option>
         <option value={storyGemsSum(13)}>Alubarna</option>
-        <option value={storyGemsSum(12)}>Nanohana > Rainbase</option>
+        <option value={storyGemsSum(12)}>Nanohana Rainbase</option>
         <option value={storyGemsSum(11)}>Drum Kingdom</option>
         <option value={storyGemsSum(10)}>Little Garden</option>
         <option value={storyGemsSum(9)}>Whiskey Peak</option>
